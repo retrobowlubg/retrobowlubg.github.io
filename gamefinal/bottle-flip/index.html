@@ -1,0 +1,37 @@
+<!DOCTYPE html> <html>     <head>         <script>
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                        m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+            ga('create', 'UA-47886667-12', 'auto');
+            ga('send', 'pageview');
+
+        </script>         <meta charset="utf-8">         <title>Bottle Flip Game Files</title>         <link rel="icon" type="image/GIF" href="https://eggy-car.github.io/gamefinal/bottle-flip/res/favicon.ico"/>          <meta name="viewport"               content="width=device-width,user-scalable=no,initial-scale=1, minimum-scale=1,maximum-scale=1"/>          <!--https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html-->         <meta name="apple-mobile-web-app-capable" content="yes">         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">         <meta name="format-detection" content="telephone=no">          <!-- force webkit on 360 -->         <meta name="renderer" content="webkit"/>         <meta name="force-rendering" content="webkit"/>         <!-- force edge on IE -->         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>         <meta name="msapplication-tap-highlight" content="no">          <!-- force full screen on some browser -->         <meta name="full-screen" content="yes"/>         <meta name="x5-fullscreen" content="true"/>         <meta name="360-fullscreen" content="true"/>          <!-- force screen orientation on some browser -->         <!-- <meta name="screen-orientation" content="portrait"/>         <meta name="x5-orientation" content="portrait"> -->          <meta name="browsermode" content="application">         <meta name="x5-page-mode" content="app">          <!--CLOUD API-->         <script src="https://game-cdn.poki.com/scripts/v2/poki-sdk.js"></script>           <script type="text/javascript">
+            //web_backend.loginStatus = '';
+            if (pg.native.isCloudGame()) {
+                web_backend.initCloudGame();
+            } else if (pg.native.isPokiGame()) {
+                web_backend.initPokiGame();
+            }
+
+            function pause() {
+                if (cc.director.getRunningScene().getGameLayer) {
+                    cc.director.getRunningScene().getGameLayer().pause();
+                } else {
+                    pg.SoundManager.getInstance().pauseMusic();
+                }
+            }
+            function resume() {
+                if (!cc.director.getRunningScene().getGameLayer) {
+                    pg.SoundManager.getInstance().resumeMusic();
+                }
+            }
+        </script>         <style type="text/css">html {                 -ms-touch-action: none;             }              body, canvas, div {                 margin: 0;                 padding: 0;                 outline: none;                 -moz-user-select: none;                 -webkit-user-select: none;                 -ms-user-select: none;                 -khtml-user-select: none;                 -webkit-tap-highlight-color: rgba(0, 0, 0, 0);             }              body {                 position: absolute;                 top: 0;                 left: 0;                 width: 100%;                 height: 100%;                 padding: 0;                 border: 0;                 margin: 0;                  cursor: default;                 color: #888;                 background-color: #333;                  text-align: center;                 font-family: Helvetica, Verdana, Arial, sans-serif;                  display: flex;                 flex-direction: column;             }              #Cocos2dGameContainer {                 position: absolute;                 margin: 0;                 overflow: hidden;                 left: 0px;                 top: 0px;                  display: -webkit-box;                 -webkit-box-orient: horizontal;                 -webkit-box-align: center;                 -webkit-box-pack: center;             }              canvas {                 background-color: rgba(0, 0, 0, 0);             }         </style>     <meta name="robots" content="index, follow"><link rel="canonical" href="../../more-game/bottle-flip.html"></head>     <body>         <canvas id="gameCanvas" width="480" height="720"></canvas>                  <script cocos src="game.min.js"></script>     </body> <script src="../../site-scripts/frame.js"></script></html>

@@ -1,0 +1,284 @@
+@font-face { font-family: 'Concert One'; src: url("ConcertOne-Regular.ttf"); font-weight: 400; font-style: normal; font-stretch: normal; unicode-range: U+0020-00FE; }
+
+body { font-family: "Concert One", Arial, sans-serif; background-color: #5B5B5B; line-height: 1; font-size: 17px !important; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; padding:0px; margin: 0px; }
+
+
+.webgl-content * {border: 0; margin: 0; padding: 0}
+.webgl-content {position: absolute; width:100%; height:100%; bottom: 0px; left: 0px; border: 0; }
+
+.webgl-content .logo, .progress {position: absolute; left: 50%; top: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%);}
+.webgl-content .logo {background: url('roadbg.jpg') no-repeat center / contain; min-height:100%; width: 100%; height: 100%; background-size:cover;}
+.webgl-content .progress {height: 18px; width: 141px; margin-top: 90px;}
+.webgl-content .progress .empty {background: url('https://eggy-car.github.io/gamefinaltwo/hole-io/TemplateData/progressEmpty.Light.png') no-repeat right / cover; float: right; width: 100%; height: 100%; display: inline-block;}
+.webgl-content .progress .full {background: url('https://eggy-car.github.io/gamefinaltwo/hole-io/TemplateData/progressFull.Light.png') no-repeat left / cover; float: left; width: 0%; height: 100%; display: inline-block;}
+
+.webgl-content .logo.Dark {background-image: url('roadbg.jpg');}
+.webgl-content .progress.Dark .empty {background-image: url('progressEmpty.Dark.png');}
+.webgl-content .progress.Dark .full {background-image: url('progressFull.Dark.png');}
+
+#unity-progress-bar-empty {position: absolute; left: 50%; top: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); width: 141px; height: 18px; margin-top: 90px; background: url('progressEmpty.Dark.png') no-repeat right / cover; float: left; display: inline-block; }
+#unity-progress-bar-full { position: relative; left: 0%; top: 0%; width: 0%; height: 18px; background: url('progressFull.Dark.png') no-repeat left / cover; float: left; display: inline-block; }
+
+
+#gameContainer {
+  width: 100%;
+
+}
+
+
+#links {
+	position: absolute; right: 0px; bottom: 0px;
+	padding: 8px;
+	list-style: none; background-color: #fff; border-top-left-radius: 5px;
+}
+
+#links ul {
+	list-style-type: none;
+}
+
+#links ul li {
+        display: inline;
+}
+
+#links ul li a {
+	color: #000;
+	display: inline-block; margin-right: 10px;
+	text-decoration: none;
+}
+#links ul li a.visited {
+	color: #000;
+}
+
+#links ul li a:hover {
+	opacity: 0.85;
+}
+
+
+#ads {
+	position: absolute; left: 0px; bottom: 0px;
+	padding: 8px; background-color: #fff; border-top-right-radius: 5px;  
+	display: none;
+}
+
+#gdads {
+	position: absolute; left: 0px; bottom: 0px; width: 346px; height: 290px;
+	padding: 0px; margin: 0px; 
+	display: none;
+	vertical-align: bottom;
+}
+#gddisplayad {
+	display:block;
+	padding: 0; margin: 0;
+	width: 336px; height: 280px;
+	vertical-align: bottom;
+}
+
+#shares {
+	position: absolute; left: 0px; top: 0px;
+	color: #FFFFFF;
+	font-size: 22px;
+	padding: 12px;
+}
+
+#shares p
+{
+	padding: 6px;
+}
+
+#shares a {
+	display: inline-block; margin-right: 10px;
+}
+
+#popup-about {
+	display: none;
+}
+
+
+#leaderboard
+{
+	position: absolute; 
+	top: 20px;
+	right: 0px;
+	width: 230px;
+	text-align: center;
+	background-color: #fff;
+	border-top-left-radius: 5px;  
+	border-bottom-left-radius: 5px;  
+}
+
+#banner {
+	position: absolute;
+	top: 460px;
+	right: 20px;
+}
+#banner img {
+	border-radius: 5px;
+}
+
+
+#killBoard {
+	color: #404040; width: 100%;font-size: 16px;
+}
+
+#scoreBoard {
+	color: #404040; width: 100%;font-size: 16px;
+}
+#pumpkinBoard {
+	color: #404040; width: 100%;font-size: 16px;
+}
+
+	
+#switchBoard {
+	width: 100%;
+	text-align: center;	
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
+
+#switchBoard a {
+	color: #000000;
+	text-decoration: none;
+}
+#switchBoard a.visited {
+	color: #000000;
+}
+#switchBoard a:hover {
+	opacity: 0.85;
+}
+.leaderboardHeading {
+	color:#000000; background-color: #959595; border-top-left-radius: 5px;
+}
+
+#ideaBlock
+{
+	position: absolute; 
+	top: 416px;
+	right: 0px;
+	width: 230px;
+	text-align: center;
+	background-color: #fff;
+	border-top-left-radius: 5px;  
+	border-bottom-left-radius: 5px;  
+}
+#ideaLink {
+	width: 100%;
+	text-align: center;	
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
+
+#ideaLink a {
+	color: #1f40e2;
+	text-decoration: none;
+}
+#ideaLink a.visited {
+	color: #1f40e2;
+}
+#ideaLink a:hover {
+	opacity: 0.85;
+}
+
+#preroll {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	display: none;
+}
+
+#rl1 {
+	position: absolute;
+	right: 34px;
+	top: 594px;
+	width: 160px;
+	text-align: center;
+	background: white;
+	padding: 5px;
+	border-radius: 5px;
+}
+#rl1 a {
+	color: black;
+	font-size: 24px;
+	text-decoration: underline;
+}
+#rl1 a:visited {
+	color: black;
+}
+
+#rl2 {
+	position: absolute;
+	right: 34px;
+	top: 640px;
+	height: 30px;
+	width: 160px;
+	text-align: center;
+	background: white;
+	padding: 5px;
+	border-radius: 5px;
+}
+#rl2 a {
+	color: black;
+	font-size: 24px;
+	text-decoration: underline;
+}
+#rl2 a:visited {
+	color: black;
+}
+
+#popup-howtoplay {
+	display: none;
+}
+
+#popup-tipsandtricks {
+	display: none;
+}
+
+#popup-shop {
+	display: none;
+}
+
+
+#discord {	
+	position: absolute;
+	left: 50%;
+	top: 8px;
+	z-index: 3;
+	margin-left: -100px;
+}
+
+#discordgd {	
+	position: absolute;
+	left: 50%;
+	top: 8px;
+	z-index: 3;
+	margin-left: -100px;
+}
+
+#discord a img {
+	border-radius: 6px;
+}
+
+#discordgd a img {
+	border-radius: 6px;
+}
+
+#discord img {
+	border-radius: 6px;
+}
+#discordgd img {
+	border-radius: 6px;
+}
+
+
+#aipBranding {
+	display: none!important;
+}
+
+#aip_gdpr {
+	pointer-events: all!important;
+}
+
+.tshirtshop {
+	font-size: 20px;
+}

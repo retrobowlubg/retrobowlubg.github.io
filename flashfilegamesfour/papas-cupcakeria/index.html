@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<link rel="stylesheet" href="../../waffle-flash/waflash-style.css" type="text/css">
+<script>
+		var gameConfig = {
+			swfUrl: "https://eggy-car.github.io/flashgamerun/papas-cupcakeria.swf"		
+		}
+</script>
+<title>Papa&#39;s Cupcakeria Game Files</title>
+<link rel="canonical" href="../../more-game/papas-cupcakeria.html"/>
+<meta name="robots" content="noindex">
+</head>
+<body>
+<div id="waflashContainer">
+<canvas class="waflashCanvas" id="canvas" tabindex="1"></canvas>
+<div id="waflashStatus" style="display: none;">Playing...</div>
+<script>
+		var ua = navigator.userAgent.toLowerCase();
+		if ( (navigator.appName =='Netscape' && ua.indexOf('trident') != -1) || (ua.indexOf("msie") != -1)) {
+    		var waf = document.getElementById('waflashStatus');
+			waf.style.display ='block';
+			waf.innerText ='??? ?????(IE) ??? ??? ???? ???? !\n??, ???? ?? ????? ??????.';
+			gtag('event', 'connect_from_ie', {'event_category': 'error', 'event_label': ua });
+		}
+	</script>
+<script type="module">
+		let is_mobile = /Mobi/i.test(window.navigator.userAgent);
+		if (is_mobile) {
+			function scrollToSubject() {
+				try {
+					window.scrollTo({
+						top: 100,
+						left: 0,
+						behavior: 'smooth'
+					});
+				} catch (e) {}
+			}
+			scrollToSubject();
+			window.addEventListener("orientationchange", function() {
+				setTimeout(scrollToSubject, 100);
+			});
+		} else {
+			document.getElementById('canvas').focus();
+		}
+		document.getElementById('canvas').addEventListener("keydown", function(ev) {
+			ev.preventDefault();
+			ev.stopPropagation();
+		});
+		document.getElementById('canvas').addEventListener("click", function() {
+			document.getElementById('canvas').focus();
+		});
+		document.addEventListener("mousedown", (function() {
+			const canvasElement = document.getElementById('canvas');
+			let focused = false;
+			return function(ev) {
+				if (ev.target == canvasElement) {
+					if (!focused) {
+						canvasElement.focus();
+						focused = true;
+					}
+				} else {
+					if (focused) {
+						focused = false;
+					}
+				}
+				return true;
+			}
+		})());
+		import {
+			createWaflash
+		} from 'https://eggy-car.github.io/waffle-flash/waflash-player.min.js';
+		createWaflash(gameConfig.swfUrl, window.wafOptions || {});
+	</script>
+</div>
+<script src="../../site-scripts/frame.js"></script></body>
+</html>
+

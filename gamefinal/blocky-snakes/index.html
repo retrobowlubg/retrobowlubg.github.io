@@ -1,0 +1,125 @@
+<!DOCTYPE html> <html lang="en-us">  <head>   <meta charset="utf-8">   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">   <title>Blocky Snakes Game Files</title>   <link rel="shortcut icon" href="TemplateData/favicon.ico">   <link rel="stylesheet" href="TemplateData/style.css">    <meta property="og:title" content="Blocky Snakes" />   <meta property="og:type" content="website" />   <meta property="og:url" content="http://gameonhai.com/" />   <meta property="og:image" content="http://gameonhai.com/instantgames/bot/bockysnakes.png" />   <meta property="og:site_name" content="Blocky Snakes" />   <meta property="og:description"     content="Blocky Snakes is slithering snakes game in 3d world where player to join in the match in order to beat others. Rule to become the grand snake in game is to eat others and grow longer. Game has different power ups and collect-able items to grow further. Good Luck" /> <meta name="robots" content="index, follow" />   <style type="text/css">body {       margin: 0px;       border: none;     }      canvas {       width: 100%;       height: 100%;       position: absolute;     }      #gameContainer {       background: url('TemplateData/background.jpg') no-repeat center center !important;        background-size: cover !important;     }   </style>    <script src="TemplateData/UnityProgress.js"></script>   <script src="Build/UnityLoader.js"></script>   <script src="../../poki-sdk.js"></script>    <script type="text/javascript">
+    var gameInstance = UnityLoader.instantiate("gameContainer", "Build/BlockySnakes.json", {onProgress: UnityProgress});
+      var showAdsCalled = false;
+
+      function onPageReady()
+      {
+        console.log("Page Loaded");
+      }
+
+      var pokiSDKReady = false; 
+      var isGameLoaded = false;
+      var adBlockerEnabled = false;
+
+      PokiSDK.init().then(
+          () => {
+            pokiSDKReady = true;
+              // successfully initialized
+              console.log("PokiSDK initialized");
+              PokiSDK.gameLoadingStart();
+              // continue to game
+          }   
+      ).catch(
+          () => {
+              // initialized but the user has an adblock
+              console.log("Adblock enabled");
+              pokiSDKReady = true;
+              adBlockerEnabled = true;
+              PokiSDK.gameLoadingStart();
+              // feel free to kindly ask the user to disable AdBlock, like forcing weird usernames or showing a sad face; be creative!
+              // continue to the game
+          }   
+      );
+      function Update_LoadingProgress(progress)
+      {
+        if(!pokiSDKReady)
+          return;
+        console.log(progress);
+        var data = {};
+        data.percentageDone = progress;
+        PokiSDK.gameLoadingProgress(data);
+      }
+
+      function On_GameStarted()
+      {
+        if(isGameLoaded)
+          return;
+
+        console.log("Game Loaded");
+        isGameLoaded = true;
+        if(pokiSDKReady)
+        {
+          PokiSDK.gameLoadingFinished();  
+        }
+      }
+      function On_MatchStarted() {
+        console.log("Match Started");
+        if(pokiSDKReady)
+          PokiSDK.gameplayStart();
+      }
+      function On_MatchEnd() {
+        console.log("Match Ended");
+        if(pokiSDKReady)
+          PokiSDK.gameplayStop();
+      }
+
+      function ShowAds()
+      {
+        showAdsCalled = true;
+        console.log("<Poki> Show Ads Called");
+        if(pokiSDKReady)
+        {
+          if(!adBlockerEnabled)
+          {
+            PokiSDK.commercialBreak()
+            .then(
+                () => { //you can also use a normal function here
+                    console.log('End of commercial break');
+                    setTimeout(goToGame,500);
+                }
+            )
+            .catch(
+                () => {
+                    setTimeout(goToGame,500);
+                }   
+          );
+        }
+        else
+        {
+          setTimeout(goToGame,500);
+        }
+
+        }
+        else
+        {
+          setTimeout(goToGame,500);
+        }
+        
+      }
+      function goToGame()
+      {
+        if(showAdsCalled)
+        {
+          showAdsCalled = false;
+          gameInstance.SendMessage('AdsManager', 'onAdServed');
+          document.querySelector("canvas").focus();
+        }
+      }
+      function HappyTime(intensity)
+      {
+        console.log("Happy Time <" +intensity + ">");
+        if(pokiSDKReady)
+        {
+          PokiSDK.happyTime(intensity);
+        }
+      }
+
+      function isAdBlockerEnabled()
+      {
+        if(adBlockerEnabled)
+          return 1;
+        else
+          return 0;
+      }
+      
+  </script>  <link rel="canonical" href="../../more-game/blocky-snakes.html"></head>  <body onload="onPageReady();">   <div class="webgl-content" style="width: 100%; height: 100%; position:absolute; margin: auto">     <div id="gameContainer" style="width: 100%; height: 100%; position:absolute; margin: auto; "></div>   </div>  </body>  <script src="../../site-scripts/frame.js"></script></html>

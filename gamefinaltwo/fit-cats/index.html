@@ -1,0 +1,90 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"/><meta http-equiv="X-UA-Compatible" content="ie=edge"/><meta name="theme-color" content="#000000"/><title>Fit Cats Game Files</title><style>html,     body {       height: 100%;       margin: 0;       background-color: #006633;     }</style><noscript>Please enable javascript to continue using this application.</noscript><script>window.firstStart = false;
+    window.addEventListener('keydown', ev => {
+      if (['ArrowDown', 'ArrowUp', ' '].includes(ev.key)) {
+        ev.preventDefault();
+      }
+    });
+    window.addEventListener('wheel', ev => ev.preventDefault(), { passive: false });</script><script>window.dontUseIt = false;
+    window.reward = false;
+    window.errorCounter = 0;
+    document.addEventListener('visibilitychange', () => {
+      console.warn('vis changed');
+      if(!window.dontUseIt){
+        if (document.hidden && window.compl && window.compl.sounds) {
+          window.compl.sounds.disable();
+        } else {
+          if(window.compl && window.compl.sounds)
+            window.compl.sounds.enable();
+        }
+      }
+    })
+    window.compl = null;
+    window.adType = 'none';
+    window.wasAds  = false;
+
+    window["GD_OPTIONS"] = {
+      "gameId": "fcd3425bc57e49cf8e04438289c451b0",
+
+      "onEvent": function(event) {
+        console.log('event= ' + event.name);
+        switch (event.name) {
+          case "SDK_GAME_START":
+            //window.Howler.unmute();
+            window.wasAds = true;
+
+            if(window.compl.sounds.beforeAdsInited) {
+              window.compl.sounds.enable();
+            }
+
+            window.compl.checkAds(window.compl.typeOfAds);
+
+            //Storage.unPauseGame();
+            break;
+          case "SDK_GAME_PAUSE":
+            //
+            window.wasAds = true;
+            window.compl.sounds.beforeAdsInited = window.compl.sounds.inited;
+            if(window.compl.sounds.inited) {
+              window.compl.sounds.disable();
+            }
+            // window.reward = true;
+            break;
+          case "SDK_GDPR_TRACKING":
+            // this event is triggered when your user doesn't want to be tracked
+            break;
+
+          case "AD_ERROR":
+            //
+            window.reward = false;
+
+            /*if(window.compl.sounds.inited) {
+              window.compl.sounds.enable();
+            }*/
+
+
+            break;
+
+          case "SDK_GDPR_TARGETING":
+            // this event is triggered when your user doesn't want personalised targeting of ads and such
+            break;
+
+          case "START":
+            //   window.reward = true;
+            break;
+
+          case "SDK_REWARDED_WATCH_COMPLETE":
+            console.log('window.reward = true');
+            window.reward = true;
+
+            break;
+        }
+      },
+    };
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s);
+      js.id = id;
+      js.src = '/main.min.js';
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'gamedistribution-jssdk'));</script><script defer="defer" src="bundle.min.js"></script><meta name="robots" content="index, follow"><link rel="canonical" href="../../more-game/fit-cats.html"></head><body><div id="FreeCell Solitare"></div></body><script src="../../site-scripts/frame.js"></script></html>

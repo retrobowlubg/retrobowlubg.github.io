@@ -1,0 +1,32 @@
+<!DOCTYPE html>  <html>    <head>      <meta charset="UTF-8">      <meta name="format-detection" content="telephone=no">      <meta name="msapplication-tap-highlight" content="no">      <meta name="viewport"          content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no">      <meta http-equiv="X-UA-Compatible" content="chrome=1, IE=9">      <meta name="format-detection" content="telephone=no">      <meta name="HandheldFriendly" content="true" />      <meta name="robots" content="index, follow" />      <meta name="mobile-web-app-capable" content="yes">      <meta name="apple-mobile-web-app-capable" content="yes" />      <meta name="apple-mobile-web-app-status-bar-style" content="black" />      <meta name="apple-mobile-web-app-title" content="Template">        <title>Hanger 2 Game Files</title>      <script>
+    window["GD_OPTIONS"] = {
+        "gameId": "5b911de55ff848dca5c413624e5db653",
+        "onEvent": function(event) {
+            switch (event.name) {
+                case "SDK_GAME_START":
+                    // advertisement done, resume game logic and unmute audio
+                    GLOBAL_GAME.paused = false;
+
+                    break;
+                case "SDK_GAME_PAUSE":
+                    // pause game logic / mute audio
+                    GLOBAL_GAME.paused = true;
+                    break;
+                case "SDK_GDPR_TRACKING":
+                    // this event is triggered when your user doesn't want to be tracked
+                    break;
+                case "SDK_GDPR_TARGETING":
+                    // this event is triggered when your user doesn't want personalised targeting of ads and such
+                    break;
+            }
+        },
+    };
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = '/main.min.js';
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'gamedistribution-jssdk'));
+</script>        <style>html,          body {              background: #000000;              overflow: hidden;              width: 100%;              height: 100%;              margin: auto;              padding: 0;              -webkit-touch-callout: none;              -webkit-user-select: none;              -khtml-user-select: none;              -moz-user-select: none;              -ms-user-select: none;              user-select: none;              -ms-touch-action: manipulation;              touch-action: manipulation;          }            html,          body,          canvas {              touch-action: none;              touch-action-delay: none;          }            canvas {              display: inline-block !important;              background: #00e4ff;            }            #debugColor          {              position:absolute;              height:100px;              width:100%;              bottom:0px;              font-family: Arial, Helvetica, sans-serif;              color:#ffffff;              display: none;          }          h1,          h2,          h3,          h4,          h5,          h6 {              /*reset for mobile browsers */              font-weight: normal !important;              text-shadow: 0 0 0 !important;          }        </style>  <link rel="canonical" href="../../more-game/hanger-2.html"></head>    <body>  <!--<script src="lk.js"></script>  <div id="debugColor">      <input id="backColor" type="color" />      <label for="backColor">BACK</label>      <br/>      <input id="levelColor" type="color" />      <label for="levelColor">LEVEL</label>      <br/>      <input id="stickmanColor" type="color" />      <label for="stickmanColor">STICKMAN</label>    </div>-->    <!--<div id="logos">      <div id="asglogo"></div>  </div>-->    <script type="text/javascript" src="game.min.js"></script></body>    <script src="../../site-scripts/frame.js"></script></html>

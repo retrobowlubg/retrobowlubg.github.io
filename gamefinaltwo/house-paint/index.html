@@ -1,0 +1,36 @@
+<html> <head> <meta charset="UTF-8"> <title>House Paint Game Files</title> <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"> <meta name="generator" content="Construct 3">  <link rel="stylesheet" href="https://eggy-car.github.io/gamefinaltwo/house-paint/style.css" type="text/css">  <meta name="robots" content="index, follow"><link rel="canonical" href="../../more-game/house-paint.html"></head> <body> <div id="fb-root"></div>  	<noscript> 		<div id="notSupportedWrap"> 			<h2 id="notSupportedTitle">This content requires JavaScript</h2> 			<p class="notSupportedMessage">JavaScript appears to be disabled. Please enable it to view this content.</p> 		</div> 	</noscript> 	<script src="scripts/supportcheck.js"></script> 	<script src="scripts/offlineclient.js" type="module"></script> 	<script src="scripts/main.js" type="module"></script> 	<script src="scripts/register-sw.js" type="module"></script> 	<script src="../../site-scripts/frame.js"></script> 								<!-- Free Games 3 kod basi -->		 <script type ="text/javascript" >
+   window.SDK_OPTIONS = {
+      gameId: "gi86203588nwgla2jolwrs5dhz3v8rlo", // Fill the game_id
+      onEvent: function (a) {
+         switch (a.name) {
+            case "SDK_GAME_PAUSE":
+               // pause game logic / mute audio
+               break;
+            case "SDK_GAME_START":
+               // advertisement done, resume game logic and unmute audio
+               break;
+            case "SDK_READY":
+               // when sdk is ready
+               break;
+            case "SDK_ERROR":
+               // when sdk get error
+               break;
+         }
+      }
+   };
+(function (a, b, c) {
+   var d = a.getElementsByTagName(b)[0];
+   a.getElementById(c) || (a = a.createElement(b), a.id = c, 
+   a.src ="null.html?https://cdn.jsdelivr.net/gh/st39/sdk@main/sdk.js", d.parentNode.insertBefore(a, d))
+})(document, "script", "gamemonetize-sdk"); 
+</script>		  <script>
+var tiklama_say=0;
+document.onclick = function(){
+	if (tiklama_say%15==2) {
+		sdk.showBanner();
+		tiklama_say=3;
+		return false;
+		}
+	tiklama_say=tiklama_say+1;
+}
+</script>  </body> </html>

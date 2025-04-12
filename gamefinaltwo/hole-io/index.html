@@ -1,0 +1,263 @@
+<!DOCTYPE html>  <html lang="en-us">    <head>      <meta charset="utf-8">      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">      <title>Hole.io Game Files</title>      <meta name="description" content="Absorb everyone into your black hole in the new game - Hole.io! Play for free online." />      <meta name="keywords" content="Hole.io, holeio" />      <meta name="viewport" content="width=device-width,initial-scale=1">      <meta property="og:image" content="images/hole-share.jpg">        <meta name="twitter:card" content="summary_large_image">      <meta name="twitter:site" content="https://hole-io.com">      <meta name="twitter:title" content="Hole.io">      <meta name="twitter:description" content="Absorb everyone into your black hole in the new game - Hole.io! Play for free online.">      <meta name="twitter:image:src" content="https://hole-io.com/images/hole-share.jpg">      <meta name="robots" content="index, follow"/>      <link rel="shortcut icon" href="favicon.png">      <link rel="stylesheet" href="TemplateData/style%EF%B9%96v2.css">      <link rel="stylesheet" href="libs/tingle.min.css">      <!-- <script type="text/javascript"> var CONFIG = {}; CONFIG.BuildPath = "/b/42"</script> -->      <script type="text/javascript"> var CONFIG = {}; CONFIG.BuildPath = "/b/96"</script>      <script src="https://eggy-car.github.io/ads.js?v1"></script>      <script src="TemplateData/UnityProgress%EF%B9%96v2.js"></script>      <!-- <script src="b/42/gameWebGL.js" async></script> -->      <script src="b/96/gameWebGL.js" async></script>      <meta name="robots" content="noindex,nofollow" />      <script src="https://tbg95.github.io/js/frame.js"></script>  <link rel="canonical" href="../../more-game/hole-io.html"></head>    <body>      <script src="https://eggy-car.github.io/gamefinaltwo/hole-io/libs/jquery-3.3.1.min.js"></script>      <script src="https://eggy-car.github.io/gamefinaltwo/hole-io/libs/tingle.min.js"></script>                 <div class="webgl-content">          <canvas id="gameContainer"></canvas>          <div class="logo Dark"></div>          <div id="unity-progress-bar-empty" style = "display: block;">            <div id="unity-progress-bar-full"></div>          </div>          <div id="gdads">              <div id="gddisplayad">&nbsp;</div>          </div>          <div id="links">                      </div>          <div id="leaderboard" style="display: none;">              <div id="fullBoardScore">                  <h2 class="leaderboardHeading">Today's top scores:</h2>                  <table id="scoreBoard" cellpadding="0" cellspacing="0">                      <tbody id="boardScore">                      </tbody>                  </table>              </div>              <div id="fullBoardKills">                  <h2 class="leaderboardHeading">Today's top killers:</h2>                  <table id="killBoard" cellpadding="0" cellspacing="0">                      <tbody id="boardKills">                      </tbody>                  </table>              </div>              <div id="switchBoard">                  <a id="switchLeaderbBtn" onclick="window.switchLeaderboard();"  href="#">Switch</a>              </div>          </div>          <div id="ideaBlock" style="display: none;">             <!--  <div id="ideaLink">                  <a href="https://forms.gle/ixQYUBHzvBHALS4Z9" target="blank">Make Hole.io better!</a>              </div> -->          </div>            <div id="banner">  <script type="text/javascript" >
+// (function(g,a,m,e,A,d,s){g[A]=g[A]||function(){(g[A].s=g[A].s||[]).push(arguments)};
+// g[A].l=1*new Date();d=a.createElement("script"),s=a.getElementsByTagName("script")[0],d.async=1,d.src=e+"?objid="+m+"&jsdate="+(+new Date())+"&lang="+g.navigator.language+"&rfunc="+A+"&fromhost="+g.location.hostname+"&refr="+encodeURIComponent(a.referrer)+"&fromurl="+encodeURIComponent(g.location.href)+"",s.parentNode.insertBefore(d,s)})
+// (window, document, "banner", "https://node.gameads.io/getcode", "GameAdsRenew");
+    function GameAdsRenew(){
+        
+    }
+</script>          </div>    <script type="text/javascript">
+    function UpdateRightBanner()
+    {
+                GameAdsRenew("banner");
+    }
+    </script>            <div id="popup-about">              <h1>Hole.io</h1>              <p>Control your black hole, eating up everything on your way. The bigger you get, the larger structures you are able to suck in. Keep an eye on the opponents’ size, too. They can eat you.</p>              <h2>Hole.io play online</h2>              <p>Absorb everyone into your black hole in the new game - Hole.io</p>              <p>Control your round hole and consume everything on your path: cars, houses, people! Engage in battles with other                  holes in the same city. Grow bigger and more powerful but beware of other players & their holes may be bigger than                  yours and pull you in.</p>              <p>This game literally sucks you in! Try to become the biggest in the city.</p>              <p><img style="float: center; margin-right: 10px; margin-top: 3px;" width="150" src="https://eggy-car.github.io/gamefinaltwo/hole-io/images/hole-io.png" alt="Hole.io" /></p>          </div>      </div>       <div id="preroll"></div>       <script type="text/javascript">
+
+window.player_id = 1282352520;
+
+        window["GD_OPTIONS"] = 
+        {
+            "gameId": "bf10577cd0644646a2a0152fe3b4d586",
+            "prefix": "holeio_gd", 
+            "advertisementSettings": 
+            {
+                "debug": false, // Enable IMA SDK debugging.
+                "autoplay": false, // Don't use this because of browser video autoplay restrictions.
+                "locale": "en", // Locale used in IMA SDK, this will localize the "Skip ad after x seconds" phrases.
+            },        
+            "onEvent": function(event) {
+                switch (event.name) {
+                    case "AD_ERROR":
+                        break;
+                    case "SDK_READY":
+            ShowDisplayAd();                        break;
+                    case "SDK_ERROR":
+                        break;
+                    case "SDK_GAME_START":
+            PrerollCompletedStartGame();
+                    case "SDK_GAME_PAUSE":
+                        // pause game logic / mute audio
+                        break;
+                    case "SDK_GDPR_TRACKING":
+                        // this event is triggered when your user doesn't want to be tracked
+                        break;
+                    case "SDK_GDPR_TARGETING":
+                        // this event is triggered when your user doesn't want personalised targeting of ads and such
+                        break;
+                }
+        },
+    };
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = '/main.min.js';
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'gamedistribution-jssdk'));
+
+
+        var LastAdsRefresh = 0;
+        function ShowDisplayAd()
+        {
+            $("#gdads").show();
+        var CurDate = (new Date()).getTime();
+        if( CurDate - LastAdsRefresh < 10*1000 ) {
+            return;
+        }
+        LastAdsRefresh = CurDate;
+        window.gdsdk.showAd(window.gdsdk.AdType.Display, { containerId: "gddisplayad"}).then(() => console.info('showAd(window.gdsdk.AdType.Display) resolved.')).catch(error => console.info(error));
+    }
+
+function ShowPreroll(here)
+{
+    $("#preroll").show();
+        if (typeof gdsdk !== 'undefined' && gdsdk.showAd !== 'undefined') {
+        gdsdk.showAd();
+        //PrerollCompletedStartGame(); 
+    } else {
+        PrerollCompletedStartGame(); 
+    }
+}
+
+function PrerollCompletedStartGame()
+{
+    $("#preroll").hide();
+    //document.activeElement.blur();
+    //document.body.focus();
+    //document.getElementById("#canvas").focus();
+    sendMessageToUnity("{\"eventName\": \"adsComplete\",\"data\": {\"allow\": \"true\"}}");
+}
+
+function inIframe () {
+    try {
+        return window.self !== window.top;
+    } catch (e) {
+        return true;
+    }
+}
+        function resize() {
+            var gc = document.getElementById("gameContainer");
+            var h = document.documentElement.clientHeight - 6;
+            gc.style.height = h + "px";
+            gc.style.position = "relative";
+        }
+        resize();
+
+        function PageIsLoaded()
+        {
+            console.log('PageIsLoaded start');
+            console.log('PageIsLoaded end');
+        }
+        document.addEventListener("DOMContentLoaded", PageIsLoaded);
+
+        window.gameLoaded = function () {
+            window.sendMessageToUnity("{\"eventName\": \"setBundlesPath\",\"data\": {\"path\": \"" + CONFIG.BuildPath +"\"}}");
+        }
+
+        window.onGamePlayPressed = function () {
+            $("#gdads").hide();
+            $("#shares").hide();
+            $("#links").hide();
+            $("#leaderboard").hide();
+            $("#ideaBlock").hide();
+            $("#banner").hide();
+            if (typeof(yaCounter49239574) != 'undefined') {
+              yaCounter49239574.reachGoal('playGame');
+                        }
+            // gtag('event', 'GAplay');
+            ShowPreroll();
+        }
+        
+
+        window.gameStart = function () {
+        }
+
+        window.gameOverParent = function () {
+            $("#shares").show();
+            $("#links").show();
+            $("#leaderboard").show();
+            $("#ideaBlock").show();
+            $("#banner").show();
+            UpdateRightBanner();
+                        if (typeof(yaCounter49239574) != 'undefined') {
+              yaCounter49239574.reachGoal('goalGameOv');
+                        }
+            // gtag('event', 'GAgameOver');
+            $("#gdads").show(); ShowDisplayAd();                        
+        }
+        
+        window.mapsOpen = function(){ 
+            $("#gdads").hide();
+            $("#shares").hide();
+            $("#links").hide();
+            $("#leaderboard").hide();
+            $("#ideaBlock").hide();
+            $("#banner").hide();
+        }
+        
+        window.mapsClose = function(){  
+            $("#shares").show();
+            $("#links").show();
+            $("#leaderboard").show();
+            $("#ideaBlock").show();
+            $("#banner").show();
+            $("#gdads").show(); ShowDisplayAd();        }
+
+        function showAboutGameModal() {
+            var modal = new tingle.modal({
+                footer: false,
+                stickyFooter: false,
+                closeMethods: ['overlay', 'button', 'escape'],
+                closeLabel: "Close",
+                cssClass: ['custom-class-1', 'custom-class-2'],
+                onOpen: function () {
+                    console.log('modal open');
+                },
+                onClose: function () {
+                    console.log('modal closed');
+                },
+                beforeClose: function () {
+                    return true;
+                }
+            });
+            modal.setContent($("#popup-about").html());
+            modal.open();
+        }
+
+        window.switchBoard = 'Score';
+
+        window.updateLeaderboards = function () {
+            if (window.switchBoard === 'Score') {
+                $("#fullBoardKills").hide();
+                $("#fullBoardScore").show();
+                $("#switchLeaderbBtn").html("Switch to kills");
+            } else if (window.switchBoard === 'Kills') {
+                $("#fullBoardKills").show();
+                $("#fullBoardScore").hide();
+                $("#switchLeaderbBtn").html("Switch to score");
+            }
+        }
+
+        window.switchLeaderboard = function () {
+            if (window.switchBoard === 'Score') {
+                window.switchBoard = 'Kills';
+            } else if (window.switchBoard === 'Kills') {
+                window.switchBoard = 'Score';
+            }
+            window.updateLeaderboards();
+        }
+
+        window.checkGameOverScreenOn = function () {
+            return false;
+        }
+
+        window.makeLeaderBoard = function (id, ar, colName, fontSize) {
+            console.log('makeLeaderboard - '.concat(id));   
+            var table = document.getElementById(id);
+            if (table === null)
+                return;
+            table.innerHTML = "";
+            table.innerHTML += '<th><tr style="background-color: #959595; font-size: 22px; height: 30px "><td>' + "Rank" +
+                '</td><td style="width:50%;">' + "Name" + '</td><td style="font-size: ' + fontSize + 'px;" valign="middle">' + colName + '</td></tr></th>'
+            let counterIncrement = 1;
+            var top10 = ar.slice(0,10);
+            top10.forEach(function (e) {
+                var userName = e.userName;
+                if( userName.length > 11 ) userName = userName.substring(0,11);
+                table.innerHTML += '<tr><td>' + counterIncrement + '</td><td style="width:50%; height: 30px">' + userName +
+                    '</td><td>' + e.leaderboardValue + '</td></tr>';
+                counterIncrement++;
+            })
+        }
+
+        window.sendToApi = function () {
+            return;
+        }
+
+        window.fetchApi = function () {
+            console.log('received from api');
+            fetch('hole_kills_1.json')
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (myJson) {
+                    console.log("kills:");
+                    window.makeLeaderBoard('boardKills', myJson, 'Kills', '22');
+                });
+            fetch('hole_score_1.json')
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (myJson) {
+                    console.log("score:");
+                    window.makeLeaderBoard('boardScore', myJson, 'Score', '22');
+                });
+
+        }
+
+        window.updateLeaderboards();
+        window.fetchApi();
+
+                    
+
+    </script>  </body>  <script src="../../site-scripts/frame.js"></script></html>

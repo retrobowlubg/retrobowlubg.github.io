@@ -1,0 +1,23 @@
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+
+<center>
+<script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+<script>
+window.RufflePlayer = window.RufflePlayer || {};
+window.RufflePlayer.config = {
+"autoplay": "off",letterbox: "on","splashScreen": true,"unmuteOverlay": "hidden","quality": "high" };
+window.addEventListener("load", (event) => {
+const ruffle = window.RufflePlayer.newest();
+const player = ruffle.createPlayer();
+const container = document.getElementById("container");
+container.appendChild(player);
+player.load("https://cdn.jsdelivr.net/gh/Oozaru341/ClickJogos@a18a27ddb0e3fe3f0c48225a5908607023c90523/jogos/games/wheely.swf");
+player.style.width = "100%";
+player.style.height = "100%";
+});
+</script><div id="container"></div>
+</center>
+<script src="../../site-scripts/frame.js"></script>
+
