@@ -1,0 +1,1 @@
+var gameVersion = "2.22.0.12";
