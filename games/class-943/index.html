@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html manifest="offline.appcache">
+<head>
+	<meta name="robots" content="noindex,nofollow" />
+    <meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<title>&#x1f3ae;</title>
+		
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<link rel="apple-touch-icon" sizes="256x256" href="icon-256.png" />
+	<meta name="HandheldFriendly" content="true" />
+	
+	<meta name="mobile-web-app-capable" content="yes" />
+	<link rel="shortcut icon" sizes="256x256" href="icon-256.png" />
+
+	<style type="text/css">
+		* {
+			padding: 0;
+			margin: 0;
+		}
+		html, body {
+			background: #000;
+			color: #fff;
+			overflow: hidden;
+			touch-action: none;
+			-ms-touch-action: none;
+		}
+		canvas {
+			touch-action-delay: none;
+			touch-action: none;
+			-ms-touch-action: none;
+		}
+    </style>
+	
+	<script src="poki-sdk.js"></script>
+</head> 
+ 
+<body> 
+	<div id="fb-root"></div>
+	
+	<div id="c2canvasdiv">
+		<canvas id="c2canvas"><!-- width="907" height="510" -->
+			<h1>Your browser does not appear to support HTML5.  Try upgrading your browser to the latest version.  <a href="http://www.whatbrowser.org">What is a browser?</a>
+			<br/><br/><a href="http://www.microsoft.com/windows/internet-explorer/default.aspx">Microsoft Internet Explorer</a><br/>
+			<a href="http://www.mozilla.com/firefox/">Mozilla Firefox</a><br/>
+			<a href="http://www.google.com/chrome/">Google Chrome</a><br/>
+			<a href="http://www.apple.com/safari/download/">Apple Safari</a></h1>
+		</canvas>
+	</div>
+	
+	<script src="jquery-2.1.1.min.js"></script>
+	<script src="c2runtime.js"></script>
+
+    <script>
+		jQuery(document).ready(function (){
+			cr_createRuntime("c2canvas");
+			PokiSDK.init().then(function(){
+				window.isTJEventReady = function(eventName, cbC2Yes, cbC2No){
+					eventName = eventName || "";
+					cbC2Yes = cbC2Yes || "";
+					cbC2No = cbC2No || "";
+					var _ret = "1"; //forced as Poki stated that they have 100% fillrate
+					if(typeof c2_callFunction !== 'undefined'){
+						if(_ret && cbC2Yes !== "") c2_callFunction(cbC2Yes, [eventName, "1"]);
+						else if(cbC2No !== "") c2_callFunction(cbC2No, [eventName, "0"]);
+					}
+					return _ret;
+				};
+				window.prepareTJEvent = function(eventName, forceParam, C2cbOnReadyStateTrue, C2cbOnReadyStateFalse, repeat, retry){
+					isTJEventReady(eventName, C2cbOnReadyStateTrue, C2cbOnReadyStateFalse);
+				};
+				window.launchTJEvent = function(eventName, C2cbOnFail, C2cbOnVideoDidAppear, C2cbOnVideoDidDisappear, forceReload, fallBackOnOfferWall){	//ignore eventName, fallBackOnOfferWall not handled yet
+					eventName = eventName || "";
+					C2cbOnFail = C2cbOnFail || "";
+					C2cbOnVideoDidAppear = C2cbOnVideoDidAppear || "";
+					C2cbOnVideoDidDisappear = C2cbOnVideoDidDisappear || "";
+					cr_setSuspended(true);
+					PokiSDK.rewardedBreak().then(
+						function(grant){
+							if(grant){
+								c2_callFunction(C2cbOnVideoDidAppear, ["1"]);
+								setTimeout(function(){
+									c2_callFunction(C2cbOnVideoDidDisappear, ["1"]);
+									cr_setSuspended(false);
+								}, 100);
+							}else{
+								c2_callFunction(C2cbOnVideoDidAppear, ["1"]);
+								setTimeout(function(){
+									c2_callFunction(C2cbOnFail, ["1"]);
+									setTimeout(function(){
+										c2_callFunction(C2cbOnVideoDidDisappear, ["1"]);
+										cr_setSuspended(false);
+									}, 100);
+								}, 100);
+							}
+						}
+					);
+				};
+				eventToFire.registerEvent("C2Butt_onPauseButtPressed",function(){PokiSDK.gameplayStop(); playStarted = false;});
+				eventToFire.registerEvent("c2:butt:onPauseButtPressed",function(){PokiSDK.gameplayStop(); playStarted = false;});
+				// eventToFire.registerEvent("c2:butt:onBackToLevelButtPressed",function(){PokiSDK.gameplayStop(); playStarted = false;});
+				// eventToFire.registerEvent("c2:butt:onReplayButtPressed",function(){PokiSDK.gameplayStop(); playStarted = false;});
+				eventToFire.registerEvent("C2Butt_onBackButtPressed",function(){PokiSDK.gameplayStart(); playStarted = true;});
+				eventToFire.registerEvent("c2:butt:onBackButtPressed",function(){PokiSDK.gameplayStart(); playStarted = true;});
+				window.nextTouchLaunchAds = true;
+			}).catch(function(){
+				// console.log("Adblock enabled");
+			});
+			PokiSDK.gameLoadingStart();
+			// PokiSDK.setDebug(true);
+		});
+		
+		function onVisibilityChanged(){
+			if (document.hidden || document.mozHidden || document.webkitHidden || document.msHidden)
+				cr_setSuspended(true);
+			else
+				cr_setSuspended(false);
+		};
+		
+		document.addEventListener("visibilitychange", onVisibilityChanged, false);
+		document.addEventListener("mozvisibilitychange", onVisibilityChanged, false);
+		document.addEventListener("webkitvisibilitychange", onVisibilityChanged, false);
+		document.addEventListener("msvisibilitychange", onVisibilityChanged, false);
+				
+		var eventToFire = {};
+		window.eventToFire = eventToFire;
+		eventToFire.events = {};
+		eventToFire.registerEvent = function(eventName, callback, staticArgs){
+			if(typeof eventName !== 'string') return false;
+			if(typeof callback !== 'function' && typeof callback !== 'string') return false;
+			if(typeof this.events[eventName] === 'undefined')	this.events[eventName] = [];
+			this.events[eventName].push({"func":callback, "staticArgs":staticArgs});
+			return true;
+		};
+		eventToFire.fireEvent = function(eventName){
+			if(typeof eventName !== 'string') return false;
+			if(typeof this.events[eventName] === 'undefined') return false;
+			for(var i =0; i < this.events[eventName].length;i++){
+				var func = this.events[eventName][i]["func"];
+				if(typeof func === "string") if(typeof window[func] === "function") func = window[func]; else continue;
+				var args = [].slice.call(arguments, 1);
+				args.push(this.events[eventName][i]["staticArgs"]);
+				func.apply(this,args);
+			}
+			return true;
+		};
+		eventToFire.getAllEvent = function(){
+			return this.events;
+		};
+		window.registerEvent = function(eventName, callback, args){
+			eventToFire.registerEvent(eventName, callback, args);
+		};
+		window.fireEvent = function(eventName,args){
+			eventToFire.fireEvent(eventName,args);
+		};
+		var playStarted = false, nextTouchLaunchAds = false;
+		function c2LayoutChange(state,name,force){
+			if(name.toLowerCase() === "splash" && state === "in" && typeof window.loadingDone === "undefined") window.loadingDone = (PokiSDK.gameLoadingFinished() || true);
+			if(name.toLowerCase() === "splash" && state === "in" && playStarted) playStarted = PokiSDK.gameplayStop() && false;
+			if(name.toLowerCase() === "shop" && state === "in" && !playStarted) playStarted = PokiSDK.gameplayStart() || true;
+			if(name.toLowerCase() === "gamemain"){
+				if(state === "in" && !playStarted) playStarted = PokiSDK.gameplayStart() || true;
+				if(state === "out") playStarted = PokiSDK.gameplayStop() && false;
+			}else if(state === "in" && name.toLowerCase() === "gameover")	nextTouchLaunchAds = true;
+		}
+		function consumeTouchLaunchAds(){
+			if(!nextTouchLaunchAds) return;
+			nextTouchLaunchAds = false;
+			cr_setSuspended(true);
+			PokiSDK.commercialBreak()
+				.then(function(){
+					// console.log('End of commercial break');
+					cr_setSuspended(false);
+				});
+		}
+		$(window).click(consumeTouchLaunchAds);
+
+		function gameOver(score, isWin, obj){
+			//if(isWin != 1) return;
+			try{
+				if(typeof obj === "string") obj = JSON.parse(obj);
+			}catch(e){
+				if(typeof isWin !== "undefined" && isWin == 1) PokiSDK.happyTime(0.5);
+				return false;
+			}
+			if(typeof obj === "undefined" || typeof obj.isHighScore === "undefined"){
+				if(typeof isWin !== "undefined" && isWin == 1) PokiSDK.happyTime(0.5);
+				return false;
+			}
+			PokiSDK.happyTime(0.5 + ((obj.isHighScore == 1) ? 0.3 : 0));
+		}
+		
+    </script>
+</body> 
+</html> 
