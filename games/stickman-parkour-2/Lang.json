@@ -1,0 +1,302 @@
+{
+    "c2array": true,
+    "size": [
+        2,
+        48,
+        1
+    ],
+    "data": [
+        [
+            [
+                "Стрелка вправо - бежать вправо&Стрелка влево - бежать влево"
+            ],
+            [
+                "Стрелка вверх - прыжок!"
+            ],
+            [
+                "Стрелка вправо/\"D\" - бежать вправо&Стрелка влево/\"A\" - бежать влево"
+            ],
+            [
+                "Стрелка вверх/\"W\" прыгнуть!"
+            ],
+            [
+                "Прыгай в этот портал, дружище!"
+            ],
+            [
+                "Ура! Мы снова не в Энде!"
+            ],
+            [
+                "Можно использовать слизней, как батут!"
+            ],
+            [
+                "Берегись стрел, друг!"
+            ],
+            [
+                "Интересно, чей это дом?"
+            ],
+            [
+                "Давай подождём лифт..."
+            ],
+            [
+                "Не стой долго на песке!"
+            ],
+            [
+                "Стикмен паркур 2"
+            ],
+            [
+                "Прыгни на край, чтобы забраться!"
+            ],
+            [
+                "Сейчас нужно идти влево!"
+            ],
+            [
+                ""
+            ],
+            [
+                "Пауза"
+            ],
+            [
+                "Не нажимай на плиты!"
+            ],
+            [
+                "Не поскользнись на льду, друг!"
+            ],
+            [
+                "Пол - это лава!"
+            ],
+            [
+                "Прыгай по лодкам и не падай в воду, друг!"
+            ],
+            [
+                "Вау! Ты царь горы!"
+            ],
+            [
+                "Хей, мы в компьютере! Круто!"
+            ],
+            [
+                "Уровни"
+            ],
+            [
+                "Подводные Уровни"
+            ],
+            [
+                "Играть"
+            ],
+            [
+                "Ты можешь использовать двойной прыжок!"
+            ],
+            [
+                "Это самая ужасная картина в мире!"
+            ],
+            [
+                "Нет, ЭТО самая ужасная картина в мире!"
+            ],
+            [
+                "Хей, это чувак с тех картин!"
+            ],
+            [
+                "Снег! Может и Дед Мороз рядом?"
+            ],
+            [
+                "Пахнет динамитом!"
+            ],
+            [
+                "Прыгаем!"
+            ],
+            [
+                "Кажется, мы в шахте?"
+            ],
+            [
+                "Где это мы?"
+            ],
+            [
+                "Надеюсь, мы взяли плавки."
+            ],
+            [
+                "Киберпанк уровни"
+            ],
+            [
+                "Воу, наш корабль разбился. Теперь мы под водой!"
+            ],
+            [
+                "И тут полно шипов!"
+            ],
+            [
+                "Вау, мы в будущем!"
+            ],
+            [
+                "ВЫБОР УРОВНЕЙ"
+            ],
+            [
+                "Тузик"
+            ],
+            [
+                "Получить"
+            ],
+            [
+                "10 новых уровней"
+            ],
+            [
+                "Открыв Лаки Блок, вы откроете один из 10 новых уровней!"
+            ],
+            [
+                "Лаки Блок уровни"
+            ],
+            [
+                "Открыть Лаки Блок"
+            ],
+            [
+                "Вау! Лаки Блоки выстраивают дорогу!"
+            ],
+            [
+                "Интересно, что будет дальше?"
+            ]
+        ],
+        [
+            [
+                "Right Arrow/\"D\" - run right&Left Arrow/\"A\" - run left"
+            ],
+            [
+                "Up Arrow - Jump!\n"
+            ],
+            [
+                "Right Arrow/\"D\" - run right&Left Arrow/\"A\" - run left"
+            ],
+            [
+                "Press Up Arrow or \"W\" to jump!"
+            ],
+            [
+                "Jump into that portal, buddy!"
+            ],
+            [
+                "Hooray! We are not in the end again!"
+            ],
+            [
+                "You can use slimes like a trampoline!"
+            ],
+            [
+                "Watch out for arrows, dude!"
+            ],
+            [
+                "I wonder whose house is this?"
+            ],
+            [
+                "Let's wait for the elevator..."
+            ],
+            [
+                "Don't stay long on the sand!"
+            ],
+            [
+                "Stickman Parkour 2"
+            ],
+            [
+                "Jump up to the edge to climb up!"
+            ],
+            [
+                "Now you need to go to the left!\n"
+            ],
+            [
+                ""
+            ],
+            [
+                "Pause"
+            ],
+            [
+                "Don't press the plates!"
+            ],
+            [
+                "Don't slip on the ice, friend!"
+            ],
+            [
+                "The floor is lava!"
+            ],
+            [
+                "Jump on the boats and don't fall into the water, friend!"
+            ],
+            [
+                "Wow! You are the king of the hill!"
+            ],
+            [
+                "Hey, we're inside a computer! Cool!"
+            ],
+            [
+                "Levels"
+            ],
+            [
+                "Underwater Levels"
+            ],
+            [
+                "Play"
+            ],
+            [
+                "You can use double jump!"
+            ],
+            [
+                "This is the worst picture in the world!"
+            ],
+            [
+                "No, THIS is the worst picture in the world!"
+            ],
+            [
+                "Hey, that's the dude from those pictures!"
+            ],
+            [
+                "Snow! Maybe Santa Claus is around?"
+            ],
+            [
+                "Smell like TNT!"
+            ],
+            [
+                "Let's jump!"
+            ],
+            [
+                "Looks like we're in a mine?"
+            ],
+            [
+                "Where are we?"
+            ],
+            [
+                "I hope we took swimming trunks."
+            ],
+            [
+                "Cyberpunk Levels"
+            ],
+            [
+                "Wow, our ship has crashed. Now we are underwater!"
+            ],
+            [
+                "And it's full of thorns!"
+            ],
+            [
+                "Wow, we are in the future!"
+            ],
+            [
+                "Level selection"
+            ],
+            [
+                "Tuzik"
+            ],
+            [
+                "Get"
+            ],
+            [
+                "10 new levels"
+            ],
+            [
+                "By opening Lucky Block, you will unlock one of 10 new levels!"
+            ],
+            [
+                "Lucky Block levels"
+            ],
+            [
+                "Open Lucky Block"
+            ],
+            [
+                "Wow! Lucky Blocks are building the road!"
+            ],
+            [
+                "I wonder what will happen next?"
+            ]
+        ]
+    ]
+}
