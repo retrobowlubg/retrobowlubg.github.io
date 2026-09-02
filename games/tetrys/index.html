@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Tetrys - Falling Blocks</title>
+<style>
+  :root{
+    --bg:#141414;
+    --sidebar-bg:#0f0f0f;
+    --panel-bg:#1b1b1b;
+    --board-bg:#0a0a0a;
+    --accent:#a78bfa;
+    --accent-dim:#7c5cd1;
+    --text:#f5f5f5;
+    --muted:#9ca3af;
+  }
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; width:fit-content; background:var(--bg); overflow:hidden; }
+  body{ font-family:Arial, Helvetica, sans-serif; color:var(--text); }
+
+  .app{ display:flex; width:fit-content; }
+
+  /* ---- Sidebar ---- */
+  .sidebar{
+    width:64px;
+    background:var(--sidebar-bg);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:14px 0;
+    gap:18px;
+  }
+  .icon-btn{
+    width:36px; height:36px;
+    display:flex; align-items:center; justify-content:center;
+    border-radius:8px;
+    color:var(--accent);
+    background:transparent;
+    border:none;
+    cursor:pointer;
+    text-decoration:none;
+  }
+  .icon-btn:hover{ background:rgba(167,139,250,0.12); }
+  .icon-btn svg{ width:22px; height:22px; fill:currentColor; }
+  .icon-btn img{ width:22px; height:22px; object-fit:contain; }
+  .rate-link{
+    color:var(--accent);
+    font-size:12px;
+    text-align:center;
+    text-decoration:none;
+    line-height:1.3;
+  }
+  .rate-link:hover{ text-decoration:underline; }
+  .sidebar-spacer{ flex:1; }
+
+  /* ---- Board area ---- */
+  .board-area{
+    flex:0 0 auto;
+    padding:12px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+  .restart-btn, .pause-btn{
+    position:absolute;
+    top:8px;
+    z-index:5;
+    background:rgba(0,0,0,0.35);
+    border:none;
+    cursor:pointer;
+    padding:4px;
+    border-radius:6px;
+  }
+  .restart-btn{ left:8px; }
+  .pause-btn{ right:8px; }
+  .restart-btn:hover, .pause-btn:hover{ background:rgba(167,139,250,0.25); }
+  .restart-btn img, .pause-btn img{ width:22px; height:22px; }
+  .board-wrap{ position:relative; }
+  #canvas{ display:block; background:var(--board-bg); border-radius:4px; }
+
+  .overlay{
+    display:none;
+    position:absolute; inset:0;
+    background:rgba(0,0,0,0.78);
+    align-items:center; justify-content:center;
+    text-align:center;
+    border-radius:4px;
+  }
+  .overlay:not([hidden]){ display:flex; }
+  .overlay-inner h2{ color:#ff5b5b; margin:0 0 8px; font-size:22px; }
+  .overlay-inner p{ margin:4px 0; color:#eee; font-size:13px; }
+  .overlay-inner #overlayHint{ color:#bbb; font-size:12px; }
+
+  .toast{
+    position:absolute; top:12px; left:50%;
+    transform:translate(-50%,-8px);
+    background:rgba(167,139,250,0.95);
+    color:#1a1a1a;
+    font-weight:bold;
+    font-size:13px;
+    padding:6px 14px;
+    border-radius:20px;
+    opacity:0;
+    transition:opacity 0.2s, transform 0.2s;
+    white-space:nowrap;
+  }
+  .toast.show{ opacity:1; transform:translate(-50%,0); }
+
+  /* ---- Right panel ---- */
+  .panel{
+    width:190px;
+    background:var(--panel-bg);
+    padding:18px 16px;
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+  }
+  .panel-block h3{
+    margin:0 0 10px;
+    font-size:14px;
+    font-weight:600;
+    color:var(--text);
+  }
+  .preview-box{
+    background:var(--board-bg);
+    border-radius:6px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  #nextCanvas, #holdCanvas{ display:block; }
+  .held-row{ display:flex; align-items:center; gap:10px; }
+  #heldLabel{ color:var(--muted); font-size:13px; }
+  .stats p{ margin:6px 0; font-size:14px; color:var(--text); }
+  .stats span{ font-weight:bold; color:var(--accent); }
+
+  /* ---- Settings modal ---- */
+  .modal{
+    display:none;
+    position:fixed; inset:0;
+    background:rgba(0,0,0,0.6);
+    align-items:center; justify-content:center;
+    z-index:10;
+  }
+  .modal:not([hidden]){ display:flex; }
+  .modal-card{
+    background:#1e1e1e;
+    padding:20px;
+    border-radius:10px;
+    width:260px;
+    color:var(--text);
+  }
+  .modal-card h3{ margin-top:0; }
+  .modal-card label{ display:block; font-size:13px; margin-bottom:14px; }
+  .modal-card input[type=range]{ width:100%; margin-top:6px; }
+  .mode-select{ margin-bottom:14px; }
+  .mode-select span{ display:block; font-size:13px; margin-bottom:6px; color:var(--muted); }
+  .mode-btn{
+    background:#2a2a2a; color:var(--text); border:1px solid #3a3a3a;
+    padding:6px 10px; border-radius:6px; cursor:pointer; font-size:12px; margin-right:6px;
+  }
+  .mode-btn.active{ background:var(--accent); color:#1a1a1a; border-color:var(--accent); font-weight:bold; }
+  .danger-btn{
+    width:100%; background:#3a1f1f; color:#ff8a8a; border:1px solid #5a2a2a;
+    padding:8px; border-radius:6px; cursor:pointer; margin-bottom:10px; font-size:13px;
+  }
+  .close-btn{
+    width:100%; background:var(--accent); color:#1a1a1a; border:none;
+    padding:8px; border-radius:6px; cursor:pointer; font-weight:bold; font-size:13px;
+  }
+</style>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <a class="icon-btn" href="https://tetrys.org" target="_blank" title="Home">
+        <svg viewBox="0 0 24 24"><path d="M12 3l9 8h-3v9h-5v-6H11v6H6v-9H3z"/></svg>
+      </a>
+      <a class="icon-btn" href="https://chromewebstore.google.com/detail/arcade-classics/nmmgpbdiaofjcjmomgfpaplmabdkpjpm" target="_blank" title="More games">
+        <img src="arcade.png" alt="More games">
+      </a>
+      <button class="icon-btn" id="settingsBtn" title="Settings">
+        <svg viewBox="0 0 24 24"><path d="M19.14 12.94a7.14 7.14 0 000-1.88l2.03-1.58a.5.5 0 00.12-.64l-1.92-3.32a.5.5 0 00-.6-.22l-2.39.96a7.3 7.3 0 00-1.63-.94l-.36-2.54a.5.5 0 00-.5-.43h-3.84a.5.5 0 00-.5.43l-.36 2.54c-.59.24-1.13.56-1.63.94l-2.39-.96a.5.5 0 00-.6.22L2.71 8.84a.5.5 0 00.12.64l2.03 1.58a7.14 7.14 0 000 1.88l-2.03 1.58a.5.5 0 00-.12.64l1.92 3.32c.14.24.42.32.6.22l2.39-.96c.5.38 1.04.7 1.63.94l.36 2.54c.05.25.26.43.5.43h3.84c.24 0 .45-.18.5-.43l.36-2.54c.59-.24 1.13-.56 1.63-.94l2.39.96c.24.1.46.02.6-.22l1.92-3.32a.5.5 0 00-.12-.64zM12 15.5A3.5 3.5 0 1112 8.5a3.5 3.5 0 010 7z"/></svg>
+      </button>
+      <a class="rate-link" id="rate" href="#" target="_blank">Rate us</a>
+    </aside>
+
+    <main class="board-area">
+      <div class="board-wrap">
+        <button class="restart-btn" id="restartBtn" title="Restart"><img src="images/restart.png" alt="Restart"></button>
+        <button class="pause-btn" id="pauseBtn" title="Pause"><img id="pauseIcon" src="images/pause.png" alt="Pause"></button>
+        <canvas id="canvas" width="240" height="480"></canvas>
+        <div id="overlay" class="overlay" hidden>
+          <div class="overlay-inner">
+            <h2 id="overlayTitle">Game Over!</h2>
+            <p id="overlaySubtitle"></p>
+            <p id="overlayHint">Press any key to restart</p>
+          </div>
+        </div>
+        <div id="toast" class="toast" hidden></div>
+      </div>
+    </main>
+
+    <section class="panel">
+      <div class="panel-block">
+        <h3>Next Piece</h3>
+        <div class="preview-box" style="width:88px;height:88px;">
+          <canvas id="nextCanvas" width="88" height="88"></canvas>
+        </div>
+      </div>
+      <div class="panel-block">
+        <h3>Held Piece</h3>
+        <div class="held-row">
+          <div class="preview-box" style="width:56px;height:56px;">
+            <canvas id="holdCanvas" width="56" height="56"></canvas>
+          </div>
+          <span id="heldLabel">None</span>
+        </div>
+      </div>
+      <div class="panel-block stats">
+        <p>Score: <span id="scoreVal">0</span></p>
+        <p>High Score: <span id="highScoreVal">0</span></p>
+        <p>Level: <span id="levelVal">1</span></p>
+        <p>Rows: <span id="rowsVal">0</span></p>
+        <p id="timeRow" hidden>Time: <span id="timeVal">00:00.0</span></p>
+        <p id="bestRow" hidden>Best: <span id="bestVal">--:--.-</span></p>
+      </div>
+    </section>
+  </div>
+
+  <div id="confirmModal" class="modal" hidden>
+    <div class="modal-card">
+      <h3>Restart Game?</h3>
+      <p style="font-size:13px;color:var(--muted);margin:0 0 16px;">Your progress this round will be lost. High Score and achievements are kept.</p>
+      <div style="display:flex;gap:8px;">
+        <button id="confirmCancel" class="mode-btn" style="flex:1;margin-right:0;">Cancel</button>
+        <button id="confirmRestart" class="close-btn" style="flex:1;">Restart</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="settingsModal" class="modal" hidden>
+    <div class="modal-card">
+      <h3>Settings</h3>
+      <label>Volume
+        <input id="volumeSlider" type="range" min="0" max="100" value="70">
+      </label>
+      <div class="mode-select">
+        <span>Game Mode</span>
+        <button id="modeMarathon" class="mode-btn active">Marathon</button>
+        <button id="modeSprint" class="mode-btn">Sprint (40 Lines)</button>
+      </div>
+      <button id="resetBtn" class="danger-btn">Reset Save Data</button>
+      <button id="closeSettings" class="close-btn">Close</button>
+    </div>
+  </div>
+
+  <script src="tetrys.js"></script>
+  <script type="text/javascript" src="rate.js"></script>
+</body>
+</html>
